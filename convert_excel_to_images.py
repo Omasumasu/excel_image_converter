@@ -77,7 +77,7 @@ def convert_all_excels_to_images(input_dir="excels", output_dir="images"):
         # The batch script renames the folder to "poppler"
         poppler_path = os.path.abspath("poppler")
         if os.path.isdir(poppler_path):
-            poppler_binary_path = os.path.join(poppler_path, 'bin')
+            poppler_binary_path = os.path.join(poppler_path, 'Library/bin')
             print(f"Popplerのパスを検出しました: {poppler_binary_path}")
 
     with tempfile.TemporaryDirectory() as temp_dir:

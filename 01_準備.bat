@@ -1,45 +1,53 @@
 @echo off
-rem æ–‡å­—åŒ–ã‘å¯¾ç­–ã¨ã—ã¦ã€æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’UTF-8ã«è¨­å®šã—ã¾ã™
-chcp 65001 > nul
+rem ƒƒ‚’ ‚Åu–¼‘O‚ð•t‚¯‚Ä•Û‘¶v‚·‚éÛ‚ÉA•¶ŽšƒR[ƒh‚ðuANSIv‚É‚µ‚Ä‚­‚¾‚³‚¢B
 
 echo =======================================================
-echo  Excelç”»åƒå¤‰æ›ãƒ„ãƒ¼ãƒ« æº–å‚™ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+echo  Excel‰æ‘œ•ÏŠ·ƒc[ƒ‹ €”õƒvƒƒOƒ‰ƒ€
 echo =======================================================
 echo.
-echo ãƒ„ãƒ¼ãƒ«ã«å¿…è¦ãªãƒ•ã‚©ãƒ«ãƒ€ã¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’æº–å‚™ã—ã¾ã™...
+echo ƒc[ƒ‹‚É•K—v‚ÈƒtƒHƒ‹ƒ_‚Æƒ‰ƒCƒuƒ‰ƒŠ‚ð€”õ‚µ‚Ü‚·...
 echo.
 
-echo --- 1. ãƒ•ã‚©ãƒ«ãƒ€ã‚’ä½œæˆä¸­...
+echo --- 1. ƒtƒHƒ‹ƒ_‚ðì¬’†...
 if not exist "excels" mkdir excels
 if not exist "images" mkdir images
-echo    -> å®Œäº†
+echo    -> Š®—¹
 echo.
 
-echo --- 2. PDFå¤‰æ›ãƒ„ãƒ¼ãƒ«(Poppler)ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­...
-echo    (ã“ã‚Œã«ã¯å°‘ã—æ™‚é–“ãŒã‹ã‹ã‚‹å ´åˆãŒã‚ã‚Šã¾ã™)
+echo --- 2. PDF•ÏŠ·ƒc[ƒ‹(Poppler)‚ðƒ_ƒEƒ“ƒ[ƒh’†...
+echo    (‚±‚ê‚É‚Í­‚µŽžŠÔ‚ª‚©‚©‚éê‡‚ª‚ ‚è‚Ü‚·)
 curl -L "https://github.com/oschwartz10612/poppler-windows/releases/download/v25.07.0-0/Release-25.07.0-0.zip" -o "poppler.zip"
-echo    -> å®Œäº†
+echo    -> Š®—¹
 echo.
 
-echo --- 3. Popplerã‚’å±•é–‹ä¸­...
+echo --- 3. Poppler‚ð“WŠJ’†...
 tar -xf poppler.zip
-rename Release-25.07.0-0 poppler
-echo    -> å®Œäº†
+echo    -> Š®—¹
 echo.
 
-echo --- 4. Popplerã®ZIPãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ä¸­...
+echo --- 4. ƒtƒHƒ‹ƒ_–¼‚ð 'poppler' ‚É•ÏX’†...
+rem ššššš ‚±‚±‚ÌƒtƒHƒ‹ƒ_–¼‚ðC³‚µ‚Ü‚µ‚½ ššššš
+if exist "poppler-25.07.0" (
+    rename "poppler-25.07.0" "poppler"
+    echo    -> Š®—¹
+) else (
+    echo    -> ƒtƒHƒ‹ƒ_‚ªŒ©‚Â‚©‚ç‚È‚¢‚½‚ßAƒXƒLƒbƒv‚µ‚Ü‚µ‚½B
+)
+echo.
+
+echo --- 5. Poppler‚ÌZIPƒtƒ@ƒCƒ‹‚ðíœ’†...
 del poppler.zip
-echo    -> å®Œäº†
+echo    -> Š®—¹
 echo.
 
-echo --- 5. Pythonãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ä¸­...
+echo --- 6. Pythonƒ‰ƒCƒuƒ‰ƒŠ‚ðƒCƒ“ƒXƒg[ƒ‹’†...
 python -m venv venv
 call venv\Scripts\activate
 pip install pdf2image pywin32
-echo    -> å®Œäº†
+echo    -> Š®—¹
 echo.
 echo =======================================================
-echo  å…¨ã¦ã®æº–å‚™ãŒå®Œäº†ã—ã¾ã—ãŸï¼
+echo  ‘S‚Ä‚Ì€”õ‚ªŠ®—¹‚µ‚Ü‚µ‚½I
 echo =======================================================
 echo.
 pause
