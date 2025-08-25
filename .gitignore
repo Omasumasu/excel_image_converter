@@ -1,0 +1,14 @@
+# Pythonの仮想環境
+venv/
+
+# 生成された画像ファイル
+images/
+
+# ユーザーが入れたExcelファイル
+excels/
+
+# Pythonが自動生成するキャッシュ
+__pycache__/
+
+# macOSが自動生成する設定ファイル
+.DS_Store
