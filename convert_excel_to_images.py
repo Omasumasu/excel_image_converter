@@ -72,14 +72,13 @@ def convert_all_excels_to_images(input_dir="excels", output_dir="images"):
     current_os = platform.system()
     print(f"現在のOS: {current_os}")
 
-    # Popplerのパスをプロジェクトフォルダ内から探す
     poppler_binary_path = None
     if current_os == "Windows":
-        for item in os.listdir('.'):
-            if item.startswith('poppler-'):
-                poppler_binary_path = os.path.abspath(os.path.join(item, 'bin'))
-                print(f"Popplerのパスを検出しました: {poppler_binary_path}")
-                break
+        # The batch script renames the folder to "poppler"
+        poppler_path = os.path.abspath("poppler")
+        if os.path.isdir(poppler_path):
+            poppler_binary_path = os.path.join(poppler_path, 'bin')
+            print(f"Popplerのパスを検出しました: {poppler_binary_path}")
 
     with tempfile.TemporaryDirectory() as temp_dir:
         for filename in os.listdir(input_dir):
