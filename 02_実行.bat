@@ -1,4 +1,7 @@
 @echo off
+rem 文字化け対策として、文字コードをUTF-8に設定します
+chcp 65001 > nul
+
 echo Excelの画像変換処理を開始します...
 echo.
 
