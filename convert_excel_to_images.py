@@ -2,6 +2,7 @@ import os
 import subprocess
 import tempfile
 import platform
+import argparse
 from pdf2image import convert_from_path
 
 # --- Windows専用のExcel操作関数 ---
@@ -110,5 +111,25 @@ def convert_all_excels_to_images(input_dir="excels", output_dir="images"):
                             print(f"  [エラー] '{pdf_file}' から画像への変換に失敗しました: {e}")
     print("\n全ての変換処理が完了しました。")
 
+def main():
+    parser = argparse.ArgumentParser(description='Excel files to images converter')
+    parser.add_argument('-i', '--input', default='excels', 
+                       help='Input directory containing Excel files (default: excels)')
+    parser.add_argument('-o', '--output', default='images',
+                       help='Output directory for generated images (default: images)')
+    
+    args = parser.parse_args()
+    
+    print(f"入力フォルダ: {args.input}")
+    print(f"出力フォルダ: {args.output}")
+    
+    if not os.path.exists(args.input):
+        print(f"エラー: 入力フォルダ '{args.input}' が見つかりません。")
+        return 1
+    
+    convert_all_excels_to_images(args.input, args.output)
+    return 0
+
 if __name__ == "__main__":
-    convert_all_excels_to_images()
+    import sys
+    sys.exit(main())

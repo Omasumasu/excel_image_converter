@@ -15,3 +15,5 @@ __pycache__/
 
 poppler/
 poppler-25.07.0/
+
+build/
