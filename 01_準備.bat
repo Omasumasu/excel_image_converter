@@ -1,51 +1,50 @@
 @echo off
+rem --- Setup Script for Excel Image Converter ---
 
 echo =======================================================
-echo  Excel画像変換ツール 準備プログラム
+echo  Starting setup for the Excel Image Converter...
 echo =======================================================
 echo.
-echo ツールに必要なフォルダとライブラリを準備します...
-echo.
 
-echo --- 1. フォルダを作成中...
+echo --- 1. Creating folders...
 if not exist "excels" mkdir excels
 if not exist "images" mkdir images
-echo    完了
+echo    Done.
 echo.
 
-echo --- 2. PDF変換ツール(Poppler)をダウンロード中...
-echo    (これには少し時間がかかる場合があります)
+echo --- 2. Downloading PDF converter (Poppler)...
+echo    (This may take a moment)
 curl -L "https://github.com/oschwartz10612/poppler-windows/releases/download/v25.07.0-0/Release-25.07.0-0.zip" -o "poppler.zip"
-echo    完了
+echo    Done.
 echo.
 
-echo --- 3. Popplerを展開中...
+echo --- 3. Unzipping Poppler...
 tar -xf poppler.zip
-echo    完了
+echo    Done.
 echo.
 
-echo --- 4. フォルダ名を 'poppler' に変更中...
+echo --- 4. Renaming Poppler folder...
 if exist "poppler-25.07.0" (
     rename "poppler-25.07.0" "poppler"
-    echo    完了
+    echo    Done.
 ) else (
-    echo    フォルダが見つからないため、スキップしました。
+    echo    Folder not found, skipping rename.
 )
 echo.
 
-echo --- 5. PopplerのZIPファイルを削除中...
+echo --- 5. Deleting ZIP file...
 del poppler.zip
-echo    完了
+echo    Done.
 echo.
 
-echo --- 6. Pythonライブラリをインストール中...
+echo --- 6. Installing Python libraries...
 python -m venv venv
 call venv\Scripts\activate
 pip install pdf2image pywin32
-echo    完了
+echo    Done.
 echo.
 echo =======================================================
-echo  全ての準備が完了しました！
+echo  Setup has been completed successfully!
 echo =======================================================
 echo.
 pause
